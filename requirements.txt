@@ -3,9 +3,9 @@ openai==1.24.1
 anthropic==0.47.2
 
 # MetaGPT-compatible versions
-metagpt==1.0.0
+#metagpt==1.0.0
 semantic-kernel==0.4.3.dev0
-pydantic==1.10.13
+pydantic
 
 # Dependencies required by MetaGPT
 fire==0.4.0
@@ -39,7 +39,7 @@ qdrant-client==1.7.0
 faiss-cpu==1.7.4
 
 # Optional integrations (comment out if not needed)
-# redis==5.0.8
+redis==5.0.8
 # zhipuai==2.1.5.20250421
 # dashscope==1.19.3
 # qianfan==0.4.12.3
