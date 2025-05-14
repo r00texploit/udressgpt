@@ -29,6 +29,13 @@ share/python-wheels/
 MANIFEST
 metagpt/tools/schemas/
 examples/data/search_kb/*.json
+scripts/
+share/
+include/
+lib/
+lib64/
+etc/
+
 
 # PyInstaller
 #  Usually these files are written by a python scripts from a template

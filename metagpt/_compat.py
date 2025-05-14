@@ -17,7 +17,7 @@ if sys.implementation.name == "cpython" and platform.system() == "Windows":
         _ProactorBasePipeTransport.__del__ = pacth_del
 
     if sys.version_info >= (3, 9, 0):
-        from semantic_kernel.orchestration import sk_function as _  # noqa: F401
+        from semantic_kernel.functions.kernel_function_decorator import kernel_function as _  # noqa: F401
 
         # caused by https://github.com/microsoft/semantic-kernel/pull/1416
         asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())

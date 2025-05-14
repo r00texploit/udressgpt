@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      x-builder: cloud-r00tex910it-udress
+    container_name: udressgpt
+    volumes:
+      - ./workspace:/app/metagpt/workspace
+    environment:
+      - REDIS_HOST=redis
+      - MEILISEARCH_HOST=meilisearch
+    depends_on:
+      - redis
+      - meilisearch
+    ports:
+      - "8000:8000"
+    networks:
+      - udress-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: udress-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - udress-network
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.7
+    container_name: udress-meilisearch
+    ports:
+      - "7700:7700"
+    volumes:
+      - meili-data:/meili_data
+    networks:
+      - udress-network
+
+networks:
+  udress-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  meili-data: 
