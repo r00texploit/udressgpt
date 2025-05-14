@@ -43,7 +43,7 @@ pytest-mock==3.11.1  # test extras require
 #open-interpreter==0.1.7; python_version>"3.9" # Conflict with openai 1.x
 ta==0.10.2
 #semantic-kernel==0.9.6.dev0
-semantic-kernel==0.9.6b1
+#semantic-kernel==0.9.6b1
 wrapt==1.15.0
 aiohttp_jinja2
 azure-cognitiveservices-speech~=1.31.0 # Used by metagpt/tools/azure_tts.py
