@@ -12,7 +12,7 @@ fire==0.4.0
 typer==0.9.0
 tiktoken==0.7.0
 tenacity==8.2.3
-python-dotenv==1.0.1
+python-dotenv
 loguru==0.6.0
 pydantic-settings  # last version compatible with Pydantic v1
 
