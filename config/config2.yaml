@@ -1,0 +1,6 @@
+llm:
+  api_type: "deepseek"
+  model: "deepseek-reasoner"
+  base_url: "https://api.deepseek.ai/v1"
+  api_key: "sk-4da57d72282f44a6be1a8ceff263441b"
+  # Remove any proxy settings if they exist
