@@ -25,6 +25,8 @@ def generate_repo(
     reqa_file="",
     max_auto_summarize_code=0,
     recover_path=None,
+    ui_framework="react",
+    enable_ui_review=True,
 ) -> ProjectRepo:
     """Run the startup logic. Can be called from CLI or other Python scripts."""
     from metagpt.config2 import config
@@ -36,6 +38,7 @@ def generate_repo(
         ProjectManager,
         QaEngineer,
         FlutterDeveloper,
+        UIUXDeveloper,
     )
     from metagpt.team import Team
 
@@ -44,14 +47,27 @@ def generate_repo(
 
     if not recover_path:
         company = Team(context=ctx)
-        company.hire(
-            [
-                FlutterDeveloper(),
-                ProductManager(),
-                Architect(),
-                ProjectManager(),
-            ]
-        )
+        
+        # Core team members
+        core_team = [
+            FlutterDeveloper(),
+            ProductManager(),
+            Architect(),
+            ProjectManager(),
+
+        ]
+        
+        # Add UI/UX Developer with framework preference
+        ui_ux_dev = UIUXDeveloper()
+        ui_ux_dev.ui_framework = ui_framework
+        ui_ux_dev.enable_review = enable_ui_review
+        core_team.append(ui_ux_dev)
+        
+        # Add Flutter Developer if using Flutter
+        # if ui_framework.lower() == "flutter":
+        #     core_team.append(FlutterDeveloper())
+        
+        company.hire(core_team)
 
         if implement or code_review:
             company.hire([Engineer(n_borg=5, use_code_review=code_review)])
@@ -97,6 +113,14 @@ def startup(
     ),
     recover_path: str = typer.Option(default=None, help="recover the project from existing serialized storage"),
     init_config: bool = typer.Option(default=False, help="Initialize the configuration file for MetaGPT."),
+    ui_framework: str = typer.Option(
+        default="react",
+        help="Specify the UI framework to use (e.g., 'react', 'vue', 'angular', 'flutter').",
+    ),
+    enable_ui_review: bool = typer.Option(
+        default=True,
+        help="Whether to enable UI/UX review process.",
+    ),
 ):
     """Run a startup. Be a boss."""
     if init_config:
@@ -120,6 +144,8 @@ def startup(
         reqa_file,
         max_auto_summarize_code,
         recover_path,
+        ui_framework,
+        enable_ui_review,
     )
 
 

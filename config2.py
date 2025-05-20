@@ -129,7 +129,7 @@ class Config(CLIParams, YamlModel):
 
     def get_openai_llm(self) -> Optional[LLMConfig]:
         """Get OpenAI LLMConfig by name. If no OpenAI, raise Exception"""
-        if self.llm.api_type == LLMType.OPENAI:
+        if self.llm.api_type == LLMType.DEEPSEEK:
             return self.llm
         return None
 

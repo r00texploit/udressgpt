@@ -1,0 +1,2 @@
+2025-05-21 01:22:48.399 | INFO     | metagpt.team:invest:90 - Investment: $3.0.
+2025-05-21 01:22:48.402 | DEBUG    | metagpt.environment.base_env:publish_message:144 - publish_message: {"id":"94efcf9670904363b7b9a382915d0c67","content":"create todo app","role":"Human","cause_by":"metagpt.actions.add_requirement.UserRequirement","sent_from":"","send_to":["<all>"]}

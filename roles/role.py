@@ -40,6 +40,7 @@ from metagpt.utils.common import any_to_name, any_to_str, role_raise_decorator
 from metagpt.utils.project_repo import ProjectRepo
 from metagpt.utils.repair_llm_raw_output import extract_state_value_from_output
 
+
 if TYPE_CHECKING:
     from metagpt.environment import Environment  # noqa: F401
 
@@ -91,7 +92,7 @@ class RoleContext(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     # # env exclude=True to avoid `RecursionError: maximum recursion depth exceeded in comparison`
-    env: "Environment" = Field(default=None, exclude=True)  # # avoid circular import
+    env: Environment = Field(default=None, exclude=True)  # # avoid circular import
     # TODO judge if ser&deser
     msg_buffer: MessageQueue = Field(
         default_factory=MessageQueue, exclude=True
@@ -337,6 +338,15 @@ class Role(SerializationMixin, ContextMixin, BaseModel):
 
     def _get_prefix(self):
         """Get the role prefix"""
+        print(f"desc: {self.desc}")
+        print(f"profile: {self.profile}")
+        print(f"name: {self.name}")
+        print(f"goal: {self.goal}")
+        print(f"constraints: {self.constraints}")
+        print(f"role_id: {self.role_id}")
+        print(f"states: {self.states}")
+        print(f"actions: {self.actions}")
+        print(f"addresses: {self.addresses}")
         if self.desc:
             return self.desc
 
@@ -344,7 +354,7 @@ class Role(SerializationMixin, ContextMixin, BaseModel):
 
         if self.constraints:
             prefix += CONSTRAINT_TEMPLATE.format(**{"constraints": self.constraints})
-
+    
         if self.rc.env and self.rc.env.desc:
             all_roles = self.rc.env.role_names()
             other_role_names = ", ".join([r for r in all_roles if r != self.name])

@@ -13,6 +13,9 @@ from metagpt.actions.add_requirement import UserRequirement
 from metagpt.actions.debug_error import DebugError
 from metagpt.actions.design_api import WriteDesign
 from metagpt.actions.design_api_review import DesignReview
+from metagpt.actions.design_interface import DesignInterface
+from metagpt.actions.implement_ui import ImplementUI
+from metagpt.actions.review_ui import ReviewUI
 from metagpt.actions.project_management import WriteTasks
 from metagpt.actions.research import CollectLinks, WebBrowseAndSummarize, ConductResearch
 from metagpt.actions.run_code import RunCode
@@ -25,6 +28,15 @@ from metagpt.actions.write_test import WriteTest
 from metagpt.actions.di.execute_nb_code import ExecuteNbCode
 from metagpt.actions.di.write_analysis_code import WriteAnalysisCode
 from metagpt.actions.di.write_plan import WritePlan
+from metagpt.actions.write_flutter_code import WriteFlutterCode
+from metagpt.actions.write_flutter_tests import WriteFlutterTests
+from metagpt.actions.write_flutter_documentation import WriteFlutterDocumentation
+from metagpt.actions.write_php_code import WritePHPCode
+from metagpt.actions.write_php_tests import WritePHPTests
+from metagpt.actions.write_php_documentation import WritePHPDocumentation
+from .write_python_code import WritePythonCode
+from .write_python_tests import WritePythonTests
+from .write_python_documentation import WritePythonDocumentation
 
 
 class ActionType(Enum):
@@ -48,10 +60,36 @@ class ActionType(Enum):
     EXECUTE_NB_CODE = ExecuteNbCode
     WRITE_ANALYSIS_CODE = WriteAnalysisCode
     WRITE_PLAN = WritePlan
+    DESIGN_INTERFACE = DesignInterface
+    IMPLEMENT_UI = ImplementUI
+    REVIEW_UI = ReviewUI
+    WRITE_FLUTTER_CODE = WriteFlutterCode
+    WRITE_FLUTTER_TESTS = WriteFlutterTests
+    WRITE_FLUTTER_DOCUMENTATION = WriteFlutterDocumentation
+    WRITE_PHP_CODE = WritePHPCode
+    WRITE_PHP_TESTS = WritePHPTests
+    WRITE_PHP_DOCUMENTATION = WritePHPDocumentation
+    WRITE_PYTHON_CODE = "write_python_code"
+    WRITE_PYTHON_TESTS = "write_python_tests"
+    WRITE_PYTHON_DOCUMENTATION = "write_python_documentation"
 
 
 __all__ = [
     "ActionType",
     "Action",
     "ActionOutput",
+    "WriteCode",
+    "WriteCodeReview",
+    "WriteFlutterCode",
+    "WriteFlutterTests",
+    "WriteFlutterDocumentation",
+    "WritePHPCode",
+    "WritePHPTests",
+    "WritePHPDocumentation",
+    "DesignInterface",
+    "ImplementUI",
+    "ReviewUI",
+    "WritePythonCode",
+    "WritePythonTests",
+    "WritePythonDocumentation"
 ]

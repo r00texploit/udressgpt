@@ -15,6 +15,9 @@ from metagpt.roles.qa_engineer import QaEngineer
 from metagpt.roles.searcher import Searcher
 from metagpt.roles.sales import Sales
 from metagpt.roles.flutter_developer import FlutterDeveloper
+from metagpt.roles.ui_ux_developer import UIUXDeveloper
+from metagpt.roles.python_developer import PythonDeveloper
+from metagpt.roles.php_developer import PHPDeveloper
 
 __all__ = [
     "Role",
@@ -26,4 +29,7 @@ __all__ = [
     "Searcher",
     "Sales",
     "FlutterDeveloper",
+    "UIUXDeveloper",
+    "PythonDeveloper",
+    "PHPDeveloper",
 ]

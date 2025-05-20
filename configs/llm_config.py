@@ -34,7 +34,7 @@ class LLMType(Enum):
     DEEPSEEK = "deepseek"  # DeepSeek AI
 
     def __missing__(self, key):
-        return self.OPENAI
+        return self.DEEPSEEK
 
 
 class LLMConfig(YamlModel):

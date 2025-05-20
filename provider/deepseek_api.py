@@ -41,6 +41,7 @@ class DeepSeekLLM(BaseLLM):
     """DeepSeek API implementation using OpenAI-compatible interface"""
     
     def __init__(self, config: LLMConfig):
+        print("deepseek here")
         self.config = config
         self._init_client()
         self.auto_max_tokens = False
@@ -61,7 +62,7 @@ class DeepSeekLLM(BaseLLM):
             "api_key": self.config.api_key,
             "base_url": self.config.base_url or "https://api.deepseek.com/v1",
             "timeout": self.get_timeout(self.config.timeout or 60),  # Default timeout of 60 seconds
-            "max_retries": self.max_retries,
+            # "max_retries": self.max_retries,
         }
 
         # Add proxy support if configured
@@ -131,9 +132,9 @@ class DeepSeekLLM(BaseLLM):
                 collected_messages.append(chunk_message)
                 if finish_reason:
                     if hasattr(chunk, "usage"):
-                        usage = CompletionUsage(**chunk.usage)
+                        usage = chunk.usage
                     elif hasattr(chunk.choices[0], "usage"):
-                        usage = CompletionUsage(**chunk.choices[0].usage)
+                        usage = chunk.choices[0].usage
 
             log_llm_stream("\n")
             full_reply_content = "".join(collected_messages)
@@ -266,8 +267,8 @@ class DeepSeekLLM(BaseLLM):
     def _update_costs(self, usage: CompletionUsage):
         """Update cost tracking"""
         try:
-            if self.config.cost_manager:
-                self.config.cost_manager.update_cost(
+            if self.cost_manager:
+                self.cost_manager.update_cost(
                     usage.prompt_tokens,
                     usage.completion_tokens,
                     self.model
